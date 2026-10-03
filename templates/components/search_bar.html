@@ -1,0 +1,3 @@
+<form class="search-bar flex-grow-1" action="{% url 'products:search' %}" method="get" role="search">
+  <input type="search" name="q" class="form-control" placeholder="Buscar productos…" value="{{ query|default:'' }}" aria-label="Buscar productos">
+</form>

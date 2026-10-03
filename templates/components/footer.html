@@ -1,0 +1,37 @@
+<footer class="site-footer">
+  <div class="container py-5">
+    <div class="row g-4">
+      <div class="col-12 col-md-4">
+        <div class="brand mb-2">{{ SITE_NAME }}</div>
+        <p class="text-muted small">Descubrimiento de productos curados, directo a tu decisión de compra en Amazon.</p>
+      </div>
+      <div class="col-6 col-md-2">
+        <h6>Explorar</h6>
+        <ul class="list-unstyled small">
+          <li><a href="{% url 'products:product_list' %}">Productos</a></li>
+          <li><a href="{% url 'core:faq' %}">Preguntas frecuentes</a></li>
+          <li><a href="{% url 'core:contact' %}">Contacto</a></li>
+        </ul>
+      </div>
+      <div class="col-6 col-md-3">
+        <h6>Legal</h6>
+        <ul class="list-unstyled small">
+          <li><a href="{% url 'core:privacidad' %}">Privacidad</a></li>
+          <li><a href="{% url 'core:terminos' %}">Términos</a></li>
+          <li><a href="{% url 'core:cookies' %}">Cookies</a></li>
+          <li><a href="{% url 'core:aviso_afiliados' %}">Aviso de afiliados</a></li>
+        </ul>
+      </div>
+      <div class="col-12 col-md-3">
+        <h6>Categorías</h6>
+        <ul class="list-unstyled small">
+          {% for cat in nav_categories %}
+          <li><a href="{{ cat.get_absolute_url }}">{{ cat.name }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+    <hr class="border-secondary">
+    <p class="small text-muted mb-0">&copy; 2026 {{ SITE_NAME }}. Todos los derechos reservados. Como Asociado de Amazon, {{ SITE_NAME }} obtiene ingresos por las compras que califican.</p>
+  </div>
+</footer>

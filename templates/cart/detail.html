@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}Tu carrito — {{ SITE_NAME }}{% endblock %}
+{% block content %}
+<div class="container section" style="max-width:860px">
+  <h1 class="section-title">Tu carrito</h1>
+
+  {% if not cart_items %}
+  <div class="empty-state">
+    <p>Tu carrito está vacío.</p>
+    <a href="{% url 'products:product_list' %}" class="btn btn-dark">Explorar productos</a>
+  </div>
+  {% else %}
+  <table class="table cart-table align-middle">
+    <thead>
+      <tr><th>Producto</th><th>Cantidad</th><th>Subtotal</th><th></th></tr>
+    </thead>
+    <tbody>
+      {% for item in cart_items %}{% include "components/cart_item.html" %}{% endfor %}
+    </tbody>
+  </table>
+
+  <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mt-4">
+    <form method="post" action="{% url 'cart:clear' %}">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-link text-muted">Vaciar carrito</button>
+    </form>
+    <div class="text-end">
+      <p class="mb-1">Subtotal estimado: <strong>${{ subtotal }}</strong></p>
+      <a href="{{ amazon_cart_url }}" class="btn btn-warning btn-lg" rel="nofollow sponsored noopener">Continuar en Amazon</a>
+    </div>
+  </div>
+
+  <div class="disclosure-box mt-4">
+    El pago y la compra se completan directamente en Amazon, con tus propios métodos de pago. {{ SITE_NAME }} nunca solicita ni almacena información de tarjetas o bancaria.
+  </div>
+  {% endif %}
+</div>
+{% endblock %}

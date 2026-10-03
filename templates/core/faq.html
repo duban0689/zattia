@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Preguntas frecuentes — {{ SITE_NAME }}{% endblock %}
+{% block content %}
+<div class="container section" style="max-width:720px">
+  <h1 class="section-title">Preguntas frecuentes</h1>
+  <div class="accordion" id="faqAccordion">
+    {% for question, answer in questions %}
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button {% if not forloop.first %}collapsed{% endif %}" type="button" data-bs-toggle="collapse" data-bs-target="#faq{{ forloop.counter }}">
+          {{ question }}
+        </button>
+      </h2>
+      <div id="faq{{ forloop.counter }}" class="accordion-collapse collapse {% if forloop.first %}show{% endif %}" data-bs-parent="#faqAccordion">
+        <div class="accordion-body">{{ answer }}</div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+<script type="application/ld+json">{{ faq_jsonld|safe }}</script>
+{% endblock %}

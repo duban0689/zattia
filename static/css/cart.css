@@ -1,0 +1,13 @@
+.cart-table{background:var(--surface);border-radius:var(--radius);overflow:hidden}
+.cart-table th{font-size:.8rem;text-transform:uppercase;letter-spacing:.03em;color:var(--muted);border-bottom:1px solid var(--border)}
+.cart-table td{border-bottom:1px solid var(--border);vertical-align:middle}
+
+.cart-item-thumb{
+  width:48px;height:48px;
+  object-fit:contain;
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:8px;
+}
+
+.qty-input{text-align:center}

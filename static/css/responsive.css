@@ -1,0 +1,37 @@
+/* Mobile-first safety net: no horizontal scroll, no clipped content,
+   tested conceptually at 360/390/430/768/1024/1440px. */
+html, body{max-width:100%}
+img{max-width:100%;height:auto}
+
+.container{padding-left:1rem;padding-right:1rem}
+
+@media (max-width:430px){
+  .hero{padding:2.5rem 1rem 2rem}
+  .hero-title{font-size:1.5rem}
+  .hero-lead{font-size:.92rem}
+  .hero-search{flex-direction:column}
+  .hero-search input, .hero-search .btn{border-radius:10px}
+
+  .section-title{font-size:1.25rem}
+
+  .product-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:.6rem}
+  .product-card-body{padding:.6rem}
+  .product-card-title{font-size:.84rem}
+
+  .filters-panel{position:static}
+
+  .btn, .form-control, .form-select{min-height:2.6rem}
+
+  .cart-table{display:block;overflow-x:auto}
+}
+
+@media (min-width:431px) and (max-width:767px){
+  .product-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+
+@media (min-width:1025px){
+  .product-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+}
+
+/* Comfortable touch targets everywhere, not just the smallest phones */
+a.icon-btn, .btn{touch-action:manipulation}

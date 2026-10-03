@@ -1,0 +1,22 @@
+<tr class="cart-item" data-product-id="{{ item.product.id }}">
+  <td class="cart-item-info">
+    <a href="{{ item.product.get_absolute_url }}" class="d-flex align-items-center gap-2 text-decoration-none">
+      {% if item.product.display_image %}<img src="{{ item.product.display_image }}" alt="{{ item.product.name }}" class="cart-item-thumb">{% endif %}
+      <span>{{ item.product.name }}</span>
+    </a>
+  </td>
+  <td>
+    <form method="post" action="{% url 'cart:update' item.product.id %}" class="d-flex align-items-center gap-1 js-update-quantity-form">
+      {% csrf_token %}
+      <input type="number" name="quantity" value="{{ item.quantity }}" min="1" class="form-control form-control-sm qty-input" style="width:4.5rem">
+      <button type="submit" class="btn btn-sm btn-outline-secondary">Actualizar</button>
+    </form>
+  </td>
+  <td>{% if item.product.price %}${{ item.subtotal }}{% else %}—{% endif %}</td>
+  <td>
+    <form method="post" action="{% url 'cart:remove' item.product.id %}" class="js-remove-form">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-sm btn-link text-danger">Quitar</button>
+    </form>
+  </td>
+</tr>

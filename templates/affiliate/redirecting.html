@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}Te llevamos a Amazon — {{ SITE_NAME }}{% endblock %}
+{% block extra_head %}<meta http-equiv="refresh" content="2;url={{ affiliate_url }}">{% endblock %}
+{% block content %}
+<div class="container py-5 text-center" style="max-width:520px">
+  <h1 class="h4 mb-3">Te estamos llevando a Amazon…</h1>
+  <p class="text-muted">Vas a completar la compra de <strong>{{ product.name }}</strong> directamente en Amazon, de forma segura, con tus propios métodos de pago.</p>
+  <a href="{{ affiliate_url }}" class="btn btn-warning btn-lg mt-3" rel="nofollow sponsored noopener">Ir a Amazon ahora</a>
+  <p class="small text-muted mt-4">Como Asociado de Amazon, {{ SITE_NAME }} obtiene ingresos por las compras que califican, sin costo adicional para ti.</p>
+</div>
+{% endblock %}

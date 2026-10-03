@@ -1,0 +1,4 @@
+<a href="{{ category.get_absolute_url }}" class="category-card">
+  <span class="category-card-name">{{ category.name }}</span>
+  {% if category.description %}<span class="category-card-desc">{{ category.description }}</span>{% endif %}
+</a>

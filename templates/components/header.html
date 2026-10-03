@@ -1,0 +1,45 @@
+{% load static %}
+<header class="site-header sticky-top">
+  <nav class="navbar navbar-expand-lg">
+    <div class="container header-row">
+      <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#mobileMenu" aria-label="Abrir menú">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <a class="navbar-brand brand" href="{% url 'core:home' %}">{{ SITE_NAME }}</a>
+
+      <div class="d-none d-lg-flex flex-grow-1 mx-4">
+        <ul class="navbar-nav me-4">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Categorías</a>
+            <ul class="dropdown-menu">
+              {% for cat in nav_categories %}
+              <li><a class="dropdown-item" href="{{ cat.get_absolute_url }}">{{ cat.name }}</a></li>
+              {% endfor %}
+            </ul>
+          </li>
+        </ul>
+        {% include "components/search_bar.html" %}
+      </div>
+
+      <div class="d-flex align-items-center gap-2 header-actions">
+        <a class="icon-btn d-lg-none" href="{% url 'products:search' %}" aria-label="Buscar">🔍</a>
+        <a class="icon-btn cart-link" href="{% url 'cart:detail' %}" aria-label="Carrito">
+          🛒
+          <span class="cart-badge{% if not cart_count %} d-none{% endif %}" id="cart-badge">{{ cart_count|default:0 }}</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="collapse d-lg-none" id="mobileMenu">
+      <div class="container pb-3">
+        <div class="mb-3">{% include "components/search_bar.html" %}</div>
+        <ul class="list-unstyled mb-0">
+          {% for cat in nav_categories %}
+          <li><a class="d-block py-2 mobile-nav-link" href="{{ cat.get_absolute_url }}">{{ cat.name }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>

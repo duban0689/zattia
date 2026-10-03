@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="hero">
+  <div class="container text-center">
+    <h1 class="hero-title">Encuentra las mejores recomendaciones, sin perder tiempo buscando</h1>
+    <p class="hero-lead">Seleccionamos productos útiles, bien valorados y con buen precio, organizados por categoría, para que decidas rápido y con confianza.</p>
+    <form class="hero-search" action="{% url 'products:search' %}" method="get">
+      <input type="search" name="q" class="form-control form-control-lg" placeholder="¿Qué estás buscando?" aria-label="Buscar productos">
+      <button class="btn btn-warning btn-lg" type="submit">Buscar</button>
+    </form>
+  </div>
+</section>
+
+<section class="container section">
+  <h2 class="section-title">Categorías</h2>
+  <div class="category-grid">
+    {% for category in categories %}
+      {% include "components/category_card.html" %}
+    {% empty %}
+      <p class="text-muted">Todavía no hay categorías cargadas.</p>
+    {% endfor %}
+  </div>
+</section>
+
+{% if featured %}
+<section class="container section">
+  <h2 class="section-title">Ofertas Relámpago</h2>
+  <div class="product-grid">
+    {% for product in featured %}{% include "components/product_card.html" %}{% endfor %}
+  </div>
+</section>
+{% endif %}
+
+{% if popular %}
+<section class="container section">
+  <h2 class="section-title">Productos populares</h2>
+  <div class="product-grid">
+    {% for product in popular %}{% include "components/product_card.html" %}{% endfor %}
+  </div>
+</section>
+{% endif %}
+
+{% if recent %}
+<section class="container section">
+  <h2 class="section-title">Tendencias recientes</h2>
+  <div class="product-grid">
+    {% for product in recent %}{% include "components/product_card.html" %}{% endfor %}
+  </div>
+</section>
+{% endif %}
+
+<section class="container section">
+  <h2 class="section-title">¿Por qué {{ SITE_NAME }}?</h2>
+  <div class="benefits-grid">
+    <div class="benefit"><span class="benefit-icon">🔎</span><h3>Selección curada</h3><p>Filtramos el ruido y mostramos solo recomendaciones que valen la pena.</p></div>
+    <div class="benefit"><span class="benefit-icon">🔒</span><h3>Compra segura</h3><p>Pagas siempre en Amazon, con tus propios métodos de pago. Nunca pedimos tu tarjeta.</p></div>
+    <div class="benefit"><span class="benefit-icon">⚡</span><h3>Decide más rápido</h3><p>Categorías claras y carrito simple para comparar antes de comprar.</p></div>
+    <div class="benefit"><span class="benefit-icon">💬</span><h3>Transparencia total</h3><p>Como Asociado de Amazon ganamos una comisión por tus compras, sin costo extra para ti.</p></div>
+  </div>
+</section>
+
+<section class="container section">
+  <h2 class="section-title">Preguntas frecuentes</h2>
+  <p><a href="{% url 'core:faq' %}" class="btn btn-outline-dark">Ver todas las preguntas frecuentes</a></p>
+</section>
+
+{% endblock %}

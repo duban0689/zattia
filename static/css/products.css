@@ -1,0 +1,97 @@
+.product-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(190px,1fr));
+  gap:1rem;
+}
+
+.product-card{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  height:100%;
+}
+
+.product-card-media{
+  position:relative;
+  display:block;
+  aspect-ratio:1/1;
+  background:#fff;
+}
+.product-card-media img{width:100%;height:100%;object-fit:contain;padding:.8rem}
+.product-card-placeholder{
+  width:100%;height:100%;
+  display:flex;align-items:center;justify-content:center;
+  color:var(--muted);font-weight:600;
+}
+.product-card-media .badge{position:absolute;top:.5rem;left:.5rem;font-size:.65rem}
+.product-card-media .badge-featured{left:auto;right:.5rem}
+
+.product-card-body{padding:.9rem;display:flex;flex-direction:column;gap:.4rem;flex:1}
+.product-card-title{
+  font-size:.92rem;
+  font-weight:600;
+  color:var(--ink);
+  text-decoration:none;
+  display:-webkit-box;
+  -webkit-line-clamp:2;
+  -webkit-box-orient:vertical;
+  overflow:hidden;
+}
+.product-card-meta .rating{font-size:.82rem;color:#b8860b}
+.product-card .price{font-weight:700}
+
+/* Filters */
+.filters-panel{position:sticky;top:5.2rem}
+.filters-form .form-label{font-size:.82rem;font-weight:600;color:var(--muted)}
+
+/* Product detail */
+.product-detail-media{
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:1.2rem;
+  text-align:center;
+  position:relative;
+}
+.product-detail-media img{max-width:100%;max-height:360px;object-fit:contain}
+.product-detail-media .badge-demo{position:absolute;top:.6rem;left:.6rem}
+.product-gallery{display:flex;gap:.5rem;overflow-x:auto}
+.product-gallery img{width:72px;height:72px;object-fit:contain;border:1px solid var(--border);border-radius:8px;background:#fff}
+
+.price-lg{font-size:1.6rem;font-weight:800}
+.lead-text{color:var(--muted)}
+.rating{color:#b8860b;font-weight:600}
+.product-actions .btn{margin-right:.6rem;margin-bottom:.6rem}
+
+/* Discount badge + strikethrough original price */
+.badge-discount{
+  background:#c0392b;
+  color:#fff;
+  font-weight:700;
+}
+.product-card-media .badge-discount{top:auto;bottom:.5rem;left:.5rem;right:auto}
+
+.original-price-sm{
+  color:var(--muted);
+  font-size:.75rem;
+  font-weight:400;
+}
+
+.price-block{display:flex;align-items:baseline;gap:.5rem;flex-wrap:wrap}
+.discount-badge{
+  background:#c0392b;
+  color:#fff;
+  font-weight:700;
+  font-size:.8rem;
+  border-radius:6px;
+  padding:.15rem .5rem;
+}
+.original-price{
+  width:100%;
+  color:var(--muted);
+  font-size:.85rem;
+}
+.original-price s{color:var(--muted)}

@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% block title %}{{ product.name }} — {{ SITE_NAME }}{% endblock %}
+{% block meta_description %}{{ product.short_description|default:product.description|truncatechars:160 }}{% endblock %}
+{% block content %}
+<div class="container section">
+  <nav aria-label="breadcrumb" class="mb-3">
+    <ol class="breadcrumb small">
+      <li class="breadcrumb-item"><a href="{% url 'core:home' %}">Inicio</a></li>
+      <li class="breadcrumb-item"><a href="{{ product.category.get_absolute_url }}">{{ product.category.name }}</a></li>
+      <li class="breadcrumb-item active" aria-current="page">{{ product.name }}</li>
+    </ol>
+  </nav>
+
+  <div class="row g-5">
+    <div class="col-12 col-md-5">
+      <div class="product-detail-media">
+        {% if product.display_image %}
+          <img src="{{ product.display_image }}" alt="{{ product.name }}" class="img-fluid">
+        {% endif %}
+        {% if product.is_demo_data %}<span class="badge badge-demo">Dato de demostración</span>{% endif %}
+      </div>
+      {% if product.gallery.all %}
+      <div class="product-gallery mt-3">
+        {% for img in product.gallery.all %}
+          {% if img.display_image %}<img src="{{ img.display_image }}" alt="{{ product.name }}" loading="lazy">{% endif %}
+        {% endfor %}
+      </div>
+      {% endif %}
+    </div>
+
+    <div class="col-12 col-md-7">
+      <h1 class="h3">{{ product.name }}</h1>
+      {% if product.rating %}
+      <p class="rating mb-2">★ {{ product.rating }} <span class="text-muted">({{ product.review_count }} reseñas)</span></p>
+      {% endif %}
+      {% if product.price %}
+      <div class="price-block">
+        {% if product.discount_percent %}<span class="discount-badge">-{{ product.discount_percent }}%</span>{% endif %}
+        <span class="price-lg">${{ product.price }}</span>
+        <span class="text-muted small">{{ product.currency }}</span>
+        {% if product.discount_percent %}<div class="original-price">Precio recomendado: <s>${{ product.original_price }}</s></div>{% endif %}
+      </div>
+      {% endif %}
+
+      {% if product.short_description %}<p class="lead-text">{{ product.short_description }}</p>{% endif %}
+      {% if product.description %}<p>{{ product.description|linebreaks }}</p>{% endif %}
+
+      {% if product.feature_list %}
+      <h2 class="h6 mt-4">Características</h2>
+      <ul>
+        {% for feature in product.feature_list %}<li>{{ feature }}</li>{% endfor %}
+      </ul>
+      {% endif %}
+
+      <div class="product-actions mt-4">
+        <form method="post" action="{% url 'cart:add' product.id %}" class="js-add-to-cart-form d-inline">
+          {% csrf_token %}
+          <input type="hidden" name="next" value="{{ product.get_absolute_url }}">
+          <button type="submit" class="btn btn-outline-dark btn-lg">Agregar al carrito</button>
+        </form>
+        <a href="{% url 'affiliate:go' product.slug %}" class="btn btn-warning btn-lg" rel="nofollow sponsored">Comprar en Amazon</a>
+      </div>
+
+      <div class="disclosure-box mt-4">
+        Este botón te lleva a Amazon, donde completas la compra de forma segura con tus propios métodos de pago. Como Asociado de Amazon, {{ SITE_NAME }} gana una comisión sin costo extra para ti.
+      </div>
+    </div>
+  </div>
+
+  {% if related %}
+  <section class="section">
+    <h2 class="section-title">También te puede interesar</h2>
+    <div class="product-grid">
+      {% for p in related %}{% with product=p %}{% include "components/product_card.html" %}{% endwith %}{% endfor %}
+    </div>
+  </section>
+  {% endif %}
+</div>
+
+<script type="application/ld+json">{{ product_jsonld|safe }}</script>
+{% endblock %}

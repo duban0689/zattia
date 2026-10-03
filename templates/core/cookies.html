@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Política de cookies — {{ SITE_NAME }}{% endblock %}
+{% block content %}
+<div class="container section legal-page" style="max-width:720px">
+  <h1 class="section-title">Política de cookies</h1>
+  <p class="text-muted small">Última actualización: octubre de 2026</p>
+
+  <h2>¿Qué son las cookies?</h2>
+  <p>Las cookies son pequeños archivos que un sitio guarda en tu navegador para recordar información entre visitas.</p>
+
+  <h2>Cookies que usamos</h2>
+  <ul>
+    <li><strong>Sesión / carrito:</strong> recuerdan los productos que agregaste a tu carrito mientras navegas. Necesaria para que el carrito funcione.</li>
+    <li><strong>CSRF:</strong> protege los formularios del sitio contra ataques de falsificación de peticiones.</li>
+    <li><strong>Analítica propia:</strong> nos ayuda a entender qué productos y categorías generan más interés, de forma agregada y anónima.</li>
+  </ul>
+  <p>Cuando haces clic en un enlace hacia Amazon, Amazon puede colocar sus propias cookies de seguimiento de afiliados — eso está fuera de nuestro control y sujeto a la política de cookies de Amazon.</p>
+
+  <h2>Cómo desactivarlas</h2>
+  <p>Puedes bloquear o borrar las cookies desde la configuración de tu navegador. Si desactivas las cookies de sesión, el carrito de compras dejará de funcionar correctamente.</p>
+</div>
+{% endblock %}

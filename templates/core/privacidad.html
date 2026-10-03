@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Política de privacidad — {{ SITE_NAME }}{% endblock %}
+{% block content %}
+<div class="container section legal-page" style="max-width:720px">
+  <h1 class="section-title">Política de privacidad</h1>
+  <p class="text-muted small">Última actualización: octubre de 2026</p>
+
+  <p>En {{ SITE_NAME }} ({{ SITE_URL }}) respetamos tu privacidad. Esta política explica qué información recopilamos, cómo la usamos y qué opciones tienes.</p>
+
+  <h2>Información que recopilamos</h2>
+  <p>Recopilamos información básica de navegación de forma automática (páginas visitadas, tipo de dispositivo, origen de la visita) mediante cookies y herramientas de analítica propias, con el fin de entender qué contenido es útil y mejorar el sitio. También usamos la sesión de tu navegador para recordar el contenido de tu carrito mientras navegas. No recopilamos información de pago: cualquier compra se realiza directamente en Amazon, fuera de {{ SITE_NAME }}.</p>
+
+  <h2>Programa de afiliados de Amazon</h2>
+  <p>{{ SITE_NAME }} participa en el Programa de Afiliados de Amazon Services LLC Associates. Como Asociado de Amazon, obtenemos ingresos por las compras que califican. Esto no genera ningún costo adicional para ti. Al hacer clic en un enlace hacia Amazon, Amazon puede colocar sus propias cookies para rastrear la referencia — su uso está sujeto a la política de privacidad de Amazon, no a la nuestra. Ver también nuestro <a href="{% url 'core:aviso_afiliados' %}">aviso de afiliados</a>.</p>
+
+  <h2>Cookies</h2>
+  <p>Ver el detalle en nuestra <a href="{% url 'core:cookies' %}">política de cookies</a>.</p>
+
+  <h2>Con quién compartimos información</h2>
+  <p>No vendemos tu información personal. Podemos compartir datos de navegación agregados y anónimos con proveedores de analítica para fines estadísticos.</p>
+
+  <h2>Tus derechos</h2>
+  <p>Puedes solicitarnos información sobre los datos asociados a tu visita, o pedir su eliminación, escribiendo a <a href="mailto:contacto@zattia.com.co">contacto@zattia.com.co</a>.</p>
+
+  <h2>Contacto</h2>
+  <p>Para preguntas sobre esta política, usa nuestro <a href="{% url 'core:contact' %}">formulario de contacto</a>.</p>
+</div>
+{% endblock %}
